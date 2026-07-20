@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="page-title">
+    {% if form.instance.pk %}
+        Edit Doctor
+    {% else %}
+        Add Doctor
+    {% endif %}
+</h2>
+<div class="form-card">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Username</label>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <label>Doctor Name</label>
+            {{ form.doctor_name }}
+        </div>
+        <div class="form-group">
+            <label>Specialization</label>
+            {{ form.specialization }}
+        </div>
+       
+        <div class="button-group">
+            <button type="submit" class="save-btn">
+                Save
+            </button>
+            <a href="{% url 'doctor_list' %}" class="cancel-btn">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

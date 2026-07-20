@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Patient Details</h2>
+
+<div class="table-container" style="margin-top: 20px; max-width: 600px;">
+<table>
+    <tbody>
+        <tr>
+           <td style="font-weight: 600; width: 40%;">Patient ID</td>
+           <td>{{ patient.patient_id }}</td>
+        </tr>
+        <tr>
+           <td style="font-weight: 600;">Name</td>
+           <td>{{ patient.patient_name }}</td>
+        </tr>
+        <tr>
+           <td style="font-weight: 600;">Age</td>
+           <td>{{ patient.age }}</td>
+        </tr>
+        <tr>
+           <td style="font-weight: 600;">Disease</td>
+           <td>{{ patient.disease }}</td>
+        </tr>
+        <tr>
+           <td style="font-weight: 600;">Doctor</td>
+           <td>{{ patient.doctor.doctor_name }}</td>
+        </tr>
+        <tr>
+           <td style="font-weight: 600;">Specialization</td>
+           <td>{{ patient.doctor.specialization }}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

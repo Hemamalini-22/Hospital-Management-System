@@ -1,0 +1,82 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="page-title">Doctor List</h2>
+<div class="toolbar">
+    <div class="rows">
+        <label>Show</label>
+        <select id="rowsPerPage">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+        </select>
+        
+    </div>
+    <div class="toolbar-right">
+
+        <input
+            type="text"
+            id="searchInput"
+            class="search-box"
+            placeholder="Search Doctor..."
+        >
+        <a href="{% url 'doctor_add' %}" >
+            <button class="add-btn">
+                + Add Doctor
+            </button>
+        </a>
+    </div>
+</div>
+<div class="table-container">
+<table id="doctorTable">
+    <thead>
+        <tr>
+            <th width="25%">ID</th>
+            <th width="25%">Name</th>
+            <th width="25%">Specialization</th>
+            <th width="25%">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for doctor in doctors %}
+        <tr>
+            <td>{{ doctor.doctor_id }}</td>
+            <td>{{ doctor.doctor_name }}</td>
+            <td>{{ doctor.specialization }}</td>
+            <td>
+                <a href="{% url 'doctor_edit' doctor.id %}" >
+                    <button class="edit-btn">
+                       Edit
+                    </button>
+                </a>
+                <a href="{% url 'doctor_delete' doctor.id %}" onclick="return confirm('Are you sure?')">
+                    <button class="delete-btn">
+                       Delete
+                    </button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<div class="pagination">
+    <div id="tableInfo">
+        Showing 1 to 10 entries
+    </div>
+    <div>
+        <button id="prevBtn">
+            Previous
+        </button>
+        <span id="pageNumbers"></span>
+        <button id="nextBtn">
+            Next
+        </button>
+    </div>
+</div>
+{% load static %}
+<script src="{% static 'js/doctor.js' %}"></script>
+{% endblock %}
+

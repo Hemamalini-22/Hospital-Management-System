@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="page-title">
+    {% if form.instance.pk %}
+        Edit Group
+    {% else %}
+        Add Group
+    {% endif %}
+</h2>
+
+<div class="form-card">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Group Name</label>
+            {{ form.name }}
+        </div>
+        
+        <div class="button-group">
+            <button type="submit" class="save-btn">
+                Save
+            </button>
+            <a href="{% url 'group_list' %}" class="cancel-btn">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

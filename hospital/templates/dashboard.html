@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Dashboard</h1>
+<div class="dashboard">
+    <div class="card">
+        <h2>Total Doctors</h2>
+        <h1>{{ doctor_count }}</h1>
+    </div>
+    <div class="card">
+        <h2>Total Patients</h2>
+        <h1>{{ patient_count }}</h1>
+    </div>
+</div>
+
+{% endblock %}

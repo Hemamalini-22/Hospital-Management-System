@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="page-title">Patient List</h2>
+
+<div class="toolbar">
+    <div class="rows">
+        <label>Show</label>
+        <select id="rowsPerPage">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+        </select>
+    </div>
+
+    <div class="toolbar-right">
+        <input
+            type="text"
+            id="searchInput"
+            class="search-box"
+            placeholder="Search Patient..."
+        >
+        <a href="{% url 'patient_add' %}">
+            <button class="add-btn">
+                + Add Patient
+            </button>
+        </a>
+    </div>
+</div>
+
+<div class="table-container">
+<table id="patientTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Patient Name</th>
+            <th>Age</th>
+            <th>Disease</th>
+            <th>Doctor</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for patient in patients %}
+
+        <tr>
+            <td>{{ patient.patient_id }}</td>
+            <td>{{ patient.patient_name }}</td>
+            <td>{{ patient.age }}</td>
+            <td>{{ patient.disease }}</td>
+            <td>{{ patient.doctor.doctor_name }}</td>
+            <td>
+                <a href="{% url 'patient_edit' patient.id %}">
+                    <button class="edit-btn">
+                        Edit
+                    </button>
+                </a>
+                <a href="{% url 'patient_delete' patient.id %}" onclick="return confirm('Are you sure you want to delete this patient?')">
+                    <button class="delete-btn">
+                        Delete
+                    </button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+
+<div class="pagination">
+    <div id="tableInfo"
+        Showing 1 to 10 entries>
+    </div>
+    <div>
+        <button id="prevBtn">
+            Previous
+        </button>
+        <span id="pageNumbers"></span>
+        <button id="nextBtn">
+            Next
+        </button>
+    </div>
+</div>
+{% load static %}
+<script src="{% static 'js/patient.js' %}"></script>
+{% endblock %}
